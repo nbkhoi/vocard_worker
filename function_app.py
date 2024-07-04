@@ -8,9 +8,11 @@ import azure.data.tables as tbls
 import logging
 import os
 
+from ai.word_def_asst import assistant
 from vocard.model import Card, Topic, Module
 
 app = func.FunctionApp()
+app.register_functions(assistant)
 
 tbl_service = tbls.TableServiceClient.from_connection_string(os.environ['StorageConnectionString'])
 

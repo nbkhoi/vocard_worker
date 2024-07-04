@@ -21,9 +21,8 @@ class VocabularyWorker:
         load_dotenv()
         self.client = OpenAI()
 
-    def get_word_definition(self, word, context=""):
-        prompt = Prompt("get_word_definition")
-
+    def get_word_definition(self, word, context=None):
+        prompt = Prompt("get_word_definition") if not context else Prompt("get_word_definition_in_context")
         # start time tracking
         start_time = datetime.datetime.now()
         completion = self.client.chat.completions.create(
